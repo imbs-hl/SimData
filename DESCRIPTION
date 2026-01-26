@@ -1,0 +1,17 @@
+Package: SimData
+Title: Full Simulation Framework with Flexible Block Structure
+Version: 0.1.0
+Authors@R: 
+    person("Silke", "Szymczak", , "silke.szymczak@uni-luebeck.de", role = c("aut", "cre"))
+Description: Framework to simulate correlated predictors and binary outcome using flexible block definitions, correlations, and block-specific effects.
+Imports:
+    MASS,
+    stats
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
