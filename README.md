@@ -1,8 +1,10 @@
 ## Installation
 
 Install the development version from GitHub
-devtools::install_github("imbs-hl/SimData")
 
+``` r
+devtools::install_github("imbs-hl/SimData")
+```
 Example: Simulating Data and Fitting Models
 This example demonstrates how to simulate data and fit a random forest
 and a logistic regression model.
