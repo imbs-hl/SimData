@@ -5,9 +5,11 @@ Install the development version from GitHub
 ``` r
 devtools::install_github("imbs-hl/SimData")
 ```
-Example: Simulating Data and Fitting Models
+##  Example: Simulating Data and Fitting Models
 This example demonstrates how to simulate data and fit a random forest
 and a logistic regression model.
+
+``` r
 library(SimData)
 library(ranger)
 
@@ -70,3 +72,5 @@ boxplot(pred$pred_log_reg ~ pred$truth,
 imp <- importance(rf)
 barplot(imp, horiz = TRUE, las = 1,
         main = "Random Forest Variable Importance")
+
+```
