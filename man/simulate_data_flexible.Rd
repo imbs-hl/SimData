@@ -4,13 +4,18 @@
 \alias{simulate_data_flexible}
 \title{Simulate data set with flexible block structure}
 \usage{
-simulate_data_flexible(n = 1000, block_info)
+simulate_data_flexible(n = 1000, block_info, type = "binary", sd = 1)
 }
 \arguments{
 \item{n}{Integer. Number of observations.}
 
 \item{block_info}{Data frame describing all blocks. Must include columns:
 \code{block_id}, \code{block_size}, \code{rho}, and \code{effect_size}.}
+
+\item{type}{Character describing type of outcome ("binary" or "continuous")}
+
+\item{sd}{Numeric stating standard deviation to use for normally distributed
+error (default: 1)}
 }
 \value{
 A list with two components:
