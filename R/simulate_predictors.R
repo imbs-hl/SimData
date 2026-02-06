@@ -1,4 +1,4 @@
-#' Simulate Predictors from Multivariate Normal Blocks
+#' Simulate predictors from multivariate normal distribution
 #'
 #' Generates predictor variables for each block using a multivariate normal
 #' distribution.

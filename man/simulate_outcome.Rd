@@ -2,9 +2,9 @@
 % Please edit documentation in R/simulate_outcome.R
 \name{simulate_outcome}
 \alias{simulate_outcome}
-\title{Simulate Binary Outcome from Logistic Regression}
+\title{Simulate outcome from regression model}
 \usage{
-simulate_outcome(X, block_info)
+simulate_outcome(X, block_info, type = "binary", sd = 1)
 }
 \arguments{
 \item{X}{Numeric matrix of predictors (output from
@@ -17,13 +17,20 @@ simulate_outcome(X, block_info)
 \item \code{effect_size}: Numeric effect size for the block (0 for
 noise blocks).
 }}
+
+\item{type}{Character describing type of outcome ("binary" or "continuous")}
+
+\item{sd}{Numeric stating standard deviation to use for normally distributed
+error (default: 1)}
 }
 \value{
-A binary vector of simulated outcomes (0/1).
+A vector of simulated outcomes (0/1 for binary).
 }
 \description{
-Generates a binary outcome based on a logistic regression model,
-where each block (defined in \code{block_info}) can have its own effect size.
+Generates a binary or continuous outcome based on a logistic or linear
+regression model, respectively. Each block (defined in \code{block_info}) can
+have its own effect size. For each block the first principal component is
+estimated and used as independent variable in the regression model.
 }
 \examples{
 set.seed(123)
@@ -33,6 +40,12 @@ block_info <- data.frame(
   block_size = c(5, 5),
   effect_size = c(1, 0.5)
 )
-y <- simulate_outcome(X, block_info)
+
+# binary outcome
+y <- simulate_outcome(X, block_info, type = "binary")
 table(y)
+
+# continuous outcome
+y <- simulate_outcome(X, block_info, type = "continuous")
+summary(y)
 }

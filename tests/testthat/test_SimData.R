@@ -17,9 +17,17 @@ test_that("simulate_predictors returns matrix with correct dimensions", {
   expect_equal(dim(X), c(10,2))
 })
 
-test_that("simulate_outcome returns binary outcomes", {
+test_that("simulate_outcome returns binary outcome", {
   X <- matrix(rnorm(20), 10, 2)
   block_info <- data.frame(block_id = "A", block_size = 2, effect_size = 1)
-  y <- simulate_outcome(X, block_info)
+  y <- simulate_outcome(X, block_info, type = "binary")
   expect_true(all(y %in% c(0,1)))
+})
+
+test_that("simulate_outcome returns continuous outcome", {
+  X <- matrix(rnorm(20), 10, 2)
+  block_info <- data.frame(block_id = "A", block_size = 2, effect_size = 1)
+  y <- simulate_outcome(X, block_info, type = "continuous")
+  expect_type(y, "double")
+  expect_true(length(unique(y)) > 2)
 })
