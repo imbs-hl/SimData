@@ -2,7 +2,7 @@
 % Please edit documentation in R/simulate_predictors.R
 \name{simulate_predictors}
 \alias{simulate_predictors}
-\title{Simulate Predictors from Multivariate Normal Blocks}
+\title{Simulate predictors from multivariate normal distribution}
 \usage{
 simulate_predictors(blocks, n)
 }

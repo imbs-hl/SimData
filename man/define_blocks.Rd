@@ -2,7 +2,7 @@
 % Please edit documentation in R/define_blocks.R
 \name{define_blocks}
 \alias{define_blocks}
-\title{Define Correlated Predictor Blocks}
+\title{Define structure of predictor blocks}
 \usage{
 define_blocks(block_info)
 }

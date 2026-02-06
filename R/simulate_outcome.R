@@ -1,7 +1,9 @@
-#' Simulate Binary Outcome from Logistic Regression
+#' Simulate binary outcome from logistic regression
 #'
 #' Generates a binary outcome based on a logistic regression model,
 #' where each block (defined in \code{block_info}) can have its own effect size.
+#' For each block the first principal component is estimated and used as
+#' independent variable in the regression model.
 #'
 #' @param X Numeric matrix of predictors (output from
 #' \code{simulate_predictors()}).
@@ -14,7 +16,8 @@
 #'   }
 #'
 #' @return A binary vector of simulated outcomes (0/1).
-#' @importFrom stats rbinom
+#' @importFrom stats prcomp rbinom
+#'
 #' @examples
 #' set.seed(123)
 #' X <- matrix(rnorm(1000), ncol = 10)
@@ -31,30 +34,6 @@ simulate_outcome <- function(X, block_info) {
     stop("block_info must contain columns: block_id, block_size, and effect_size.")
   }
 
-  # Derive block-to-column mapping
-  block_indices <- split(
-    1:ncol(X),
-    rep(block_info$block_id, times = block_info$block_size))
-
-  linear_predictor <- rep(0, nrow(X))
-  for (i in seq_len(nrow(block_info))) {
-    block_id <- block_info$block_id[i]
-    beta <- block_info$effect_size[i]
-    if (beta != 0) {
-      cols <- block_indices[[block_id]]
-      linear_predictor <- linear_predictor +
-        as.vector(X[, cols, drop = FALSE] %*% rep(beta, length(cols)))
-    }
-  }
-
-  prob <- 1 / (1 + exp(-linear_predictor))
-  rbinom(n = nrow(X), size = 1, prob = prob)
-}
-
-
-#' @importFrom stats prcomp rbinom
-#'
-simulate_outcome_pca <- function(X, block_info) {
   block_indices <- split(1:ncol(X), rep(block_info$block_id, times = block_info$block_size))
   n <- nrow(X)
   pc_matrix <- matrix(NA, nrow = n, ncol = length(block_indices))

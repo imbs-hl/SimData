@@ -2,7 +2,7 @@
 % Please edit documentation in R/simulate_data_flexible.R
 \name{simulate_data_flexible}
 \alias{simulate_data_flexible}
-\title{Full Simulation Framework with Flexible Block Structure}
+\title{Simulate data set with flexible block structure}
 \usage{
 simulate_data_flexible(n = 1000, block_info)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/simulate_outcome.R
 \name{simulate_outcome}
 \alias{simulate_outcome}
-\title{Simulate Binary Outcome from Logistic Regression}
+\title{Simulate binary outcome from logistic regression}
 \usage{
 simulate_outcome(X, block_info)
 }
@@ -24,6 +24,8 @@ A binary vector of simulated outcomes (0/1).
 \description{
 Generates a binary outcome based on a logistic regression model,
 where each block (defined in \code{block_info}) can have its own effect size.
+For each block the first principal component is estimated and used as
+independent variable in the regression model.
 }
 \examples{
 set.seed(123)

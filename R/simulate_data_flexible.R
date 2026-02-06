@@ -1,4 +1,4 @@
-#' Full Simulation Framework with Flexible Block Structure
+#' Simulate data set with flexible block structure
 #'
 #' Simulates correlated predictors and a binary outcome using flexible
 #' block definitions, correlations, and block-specific effects.
@@ -11,7 +11,7 @@
 #' @return A list with two components:
 #'   \itemize{
 #'     \item \code{data}: Data frame with the simulated outcome and predictors.
-#'     \item \code{block_info}: Data frame with block structure and effect 
+#'     \item \code{block_info}: Data frame with block structure and effect
 #'     information.
 #'   }
 #' @examples
@@ -27,21 +27,21 @@
 #' result$block_info
 #' @export
 simulate_data_flexible <- function(n = 1000, block_info) {
-  
+
   blocks <- define_blocks(block_info)
   X <- simulate_predictors(blocks, n)
-  y <- simulate_outcome_pca(X, block_info)
-  
+  y <- simulate_outcome(X, block_info)
+
   block_indices <- split(
-    1:ncol(X), 
-    rep(block_info$block_id, 
+    1:ncol(X),
+    rep(block_info$block_id,
         times = block_info$block_size))
   var_metadata <- data.frame(
     var_name = colnames(X),
     block_id = rep(block_info$block_id, times = block_info$block_size),
     effect_size = rep(block_info$effect_size, times = block_info$block_size)
   )
-  
+
   return(
     list(
       data = data.frame(y = y, X),
