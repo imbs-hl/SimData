@@ -24,7 +24,7 @@ noise blocks).
 error (default: 1)}
 }
 \value{
-A vector of simulated outcomes (0/1 for binary).
+A vector of simulated outcomes (factor with levels 0/1 for binary).
 }
 \description{
 Generates a binary or continuous outcome based on a logistic or linear

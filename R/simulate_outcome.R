@@ -18,7 +18,7 @@
 #' @param sd Numeric stating standard deviation to use for normally distributed
 #' error (default: 1)
 #'
-#' @return A vector of simulated outcomes (0/1 for binary).
+#' @return A vector of simulated outcomes (factor with levels 0/1 for binary).
 #' @importFrom stats prcomp rbinom rnorm
 #' @importFrom checkmate assert_choice
 #'
@@ -73,7 +73,7 @@ simulate_outcome <- function(X, block_info, type = "binary", sd = 1) {
 
   if (type == "binary") {
     prob <- 1 / (1 + exp(-linear_predictor))
-    outcome = rbinom(n, size = 1, prob = prob)
+    outcome = as.factor(rbinom(n, size = 1, prob = prob))
   } else if (type == "continuous") {
     outcome = as.numeric(linear_predictor) + rnorm(n, mean = 0, sd = sd)
   }
